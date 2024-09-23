@@ -8,11 +8,11 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(45deg, #1a3a1a, #2c5a2c, #3e7a3e, #4a8a4a);
-            background-size: 400% 400%;
-            animation: gradientBG 20s ease infinite;
-            color: #e0ffe0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(45deg, #2c3e50, #4ca1af), url('https://www.transparenttextures.com/patterns/white-diamond.png'); /* Adicionou textura discreta */
+            background-size: 400% 400%, auto;
+            animation: gradientBG 15s ease infinite;
+            color: #ecf0f1;
         }
         @keyframes gradientBG {
             0% {background-position: 0% 50%;}
@@ -27,29 +27,30 @@
             padding: 20px;
         }
         .titulo {
-            height: 77vh;
+            height: 40vh; /* Diminuiu a altura do título */
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
         }
         h1 {
-            font-size: 4em;
-            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+            font-size: 2.5em; /* Diminuiu o tamanho da altura do "Desastres Nucleares" */
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             animation: tituloFade 5s ease-in-out infinite;
         }
         @keyframes tituloFade {
-            0%, 100% {opacity: 0.5; transform: scale(1);}
+            0%, 100% {opacity: 0.7; transform: scale(1);}
             50% {opacity: 1; transform: scale(1.05);}
         }
         .card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 10px;
             padding: 20px;
             margin: 20px 0;
             opacity: 0;
             transform: translateY(50px);
             transition: all 1s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .card:nth-child(even) {
             transform: translateY(-50px);
@@ -60,10 +61,10 @@
         }
         .botao {
             display: block;
-            width: 300px;
-            margin: 40px auto;
+            width: calc(100% - 40px); /* Mesma largura dos cards */
+            margin: 20px auto; /* Ajustou a margem para ficar em cima dos cards */
             padding: 20px;
-            background-color: #4CAF50;
+            background-color: #3498db;
             color: white;
             text-align: center;
             text-decoration: none;
@@ -72,7 +73,7 @@
             transition: background-color 0.5s, transform 0.3s;
         }
         .botao:hover {
-            background-color: #45a049;
+            background-color: #2980b9;
             transform: scale(1.05);
         }
         footer {
@@ -88,6 +89,8 @@
         <div class="titulo">
             <h1>Desastres Nucleares</h1>
         </div>
+        
+        <a href="https://netheriosa.github.io/test/" class="botao">Visualizar Modelo 3D</a> <!-- Botão movido para cima dos cards -->
         
         <div class="card visible">
             <h2>Chernobyl</h2>
@@ -109,7 +112,15 @@
             <p>O acidente mudou a percepção pública sobre a energia nuclear e influenciou políticas energéticas globais.</p>
         </div>
         
-        <a href="https://netheriosa.github.io/test/" class="botao">Visualizar Modelo 3D</a>
+        <div class="card">
+            <h2>Fukushima</h2>
+            <p>O desastre de Fukushima ocorreu em 11 de março de 2011, após um terremoto e tsunami, resultando em um colapso nuclear.</p>
+        </div>
+        
+        <div class="card">
+            <h2>Three Mile Island</h2>
+            <p>O acidente de Three Mile Island aconteceu em 28 de março de 1979, sendo o mais grave da história dos EUA.</p>
+        </div>
     </div>
     
     <footer>
