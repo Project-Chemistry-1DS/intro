@@ -186,7 +186,7 @@
             margin: 40px 0;
             opacity: 0;
             transform: translateY(50px);
-            transition: all 1s ease;
+            transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             border-left: 3px solid var(--accent-color);
             position: relative;
@@ -293,12 +293,12 @@
             }
             .card {
                 padding: 20px;
-                transition: all 0.3s ease, transform 0.3s ease;
+                transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
             }
             .card.mobile-expanded {
                 padding: 30px;
-                font-size: 1.1em;
-                transform: scale(1.05);
+                font-size: 1.05em;
+                transform: scale(1.03);
                 box-shadow: 0 10px 30px rgba(0,0,0,0.3);
                 z-index: 10;
             }
