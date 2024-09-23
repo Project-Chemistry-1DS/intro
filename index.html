@@ -187,7 +187,7 @@
             margin: 40px 0;
             opacity: 0;
             transform: translateY(50px);
-            transition: all 1s ease;
+            transition: all 1s ease, filter 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             border-left: 3px solid var(--accent-color);
             position: relative;
@@ -294,7 +294,7 @@
             }
             .card {
                 padding: 20px;
-                transition: all 0.3s ease;
+                transition: all 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
             }
             body.mobile-scroll {
                 filter: blur(5px);
@@ -302,6 +302,10 @@
             .card.mobile-expanded {
                 padding: 30px;
                 font-size: 1.1em;
+                filter: blur(0);
+                transform: scale(1.05);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 10;
             }
         }
 
@@ -408,15 +412,27 @@
         const body = document.body;
         const cards = document.querySelectorAll('.card');
         let lastScrollTop = 0;
+        let currentCard = null;
 
         function checkCards() {
             cards.forEach(card => {
-                const cardTop = card.getBoundingClientRect().top;
+                const cardRect = card.getBoundingClientRect();
+                const cardTop = cardRect.top;
+                const cardBottom = cardRect.bottom;
                 const screenHeight = window.innerHeight;
-                if(cardTop < screenHeight) {
+                
+                if(cardTop < screenHeight && cardBottom > 0) {
                     card.classList.add('visible');
                     if (isMobile) {
+                        if (currentCard && currentCard !== card) {
+                            currentCard.classList.remove('mobile-expanded');
+                        }
                         card.classList.add('mobile-expanded');
+                        currentCard = card;
+                    }
+                } else {
+                    if (isMobile) {
+                        card.classList.remove('mobile-expanded');
                     }
                 }
             });
@@ -434,15 +450,9 @@
         function handleScroll() {
             const st = window.pageYOffset || document.documentElement.scrollTop;
             if (isMobile) {
-                if (st > lastScrollTop) {
-                    // Rolando para baixo
-                    body.classList.add('mobile-scroll');
-                } else {
-                    // Rolando para cima
-                    body.classList.remove('mobile-scroll');
-                }
-                lastScrollTop = st <= 0 ? 0 : st;
+                body.classList.add('mobile-scroll');
             }
+            lastScrollTop = st <= 0 ? 0 : st;
             checkCards();
             checkScrollToTop();
         }
